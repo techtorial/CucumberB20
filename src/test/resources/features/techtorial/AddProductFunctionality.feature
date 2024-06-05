@@ -7,4 +7,3 @@ Feature: Testing Adding Product Functionality in Techtorial Website
     And User selects 'Lifting and Material Handling Equipment','Mobile Cranes' and '1' from drop-downs
     And User clicks purchase check box and add 'It is a good product' into the description.
     Then User validates product details 'Truck-Mounted Crane','$16,500.00','Allowed' from table
-

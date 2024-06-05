@@ -23,15 +23,16 @@ public class TechtorialAddProductStepDef {
     techtorialProductPage.provideNameAndPrice(name,price);//Truck-Mounted Crane,15000
     }
     @When("User selects {string},{string} and {string} from drop-downs")
-    public void user_selects_and_from_drop_downs(String string, String string2, String string3) {
-
+    public void user_selects_and_from_drop_downs(String category, String subcategory, String tax) {
+    techtorialProductPage.chooseCategoryAndTax(category,subcategory,tax);
     }
     @When("User clicks purchase check box and add {string} into the description.")
-    public void user_clicks_purchase_check_box_and_add_into_the_description(String string) {
-
+    public void user_clicks_purchase_check_box_and_add_into_the_description(String description) {
+    techtorialProductPage.descriptionAndClickAllowBox(description);
     }
     @Then("User validates product details {string},{string},{string} from table")
-    public void user_validates_product_details_from_table(String string, String string2, String string3) {
-
+    public void user_validates_product_details_from_table(String productName, String productPrice, String checkBox) {
+    techtorialProductPage.validateProductInformation(productName,productPrice,checkBox);
     }
+
 }
