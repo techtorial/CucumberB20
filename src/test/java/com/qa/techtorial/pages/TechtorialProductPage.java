@@ -46,6 +46,24 @@ public class TechtorialProductPage {
     @FindBy(xpath = "//tr[1]//td") //7
     List<WebElement> allInformation;
 
+    @FindBy(xpath = "//select[@id='category_id']")
+    WebElement categoryFilter;
+
+    @FindBy(xpath = "//select[@id='sub_category']")
+    WebElement subCategoryFilter;
+
+    @FindBy(xpath = "//a[contains(@id,'dropdownMenuLink')]")
+    List<WebElement> allThreeDots;
+
+    @FindBy(xpath = "//a[.='View']")
+    List<WebElement> viewButtons;
+
+    @FindBy(xpath = "//p[.='Product Category']//following-sibling::p")
+    WebElement productNameDetails;
+
+    @FindBy(xpath = "//p[.='Mobile Cranes']//preceding-sibling::p//following-sibling::p")
+    WebElement subCategoryDetails;
+
 
     public void clickAddProductButton(){
         addProductButton.click();
@@ -74,5 +92,21 @@ public class TechtorialProductPage {
         for(int i=3;i<allInformation.size()-1;i++){
             Assert.assertEquals(expectedProductInformation.get(i-3),BrowserUtils.getText(allInformation.get(i)));
         }
+    }
+
+    public void chooseCategories(String category,String subCategory) throws InterruptedException {
+        BrowserUtils.selectBy(categoryFilter,category,"text");
+        Thread.sleep(2000);
+        BrowserUtils.selectBy(subCategoryFilter,subCategory,"text");
+    }
+
+    public void clickThreeDotsAndViewButton(){
+        allThreeDots.getFirst().click();
+        viewButtons.getFirst().click();
+    }
+
+    public void validateProductDetails(String category,String subCategory){
+        Assert.assertEquals(category,BrowserUtils.getText(productNameDetails));
+        Assert.assertEquals(subCategory,BrowserUtils.getText(subCategoryDetails));
     }
 }

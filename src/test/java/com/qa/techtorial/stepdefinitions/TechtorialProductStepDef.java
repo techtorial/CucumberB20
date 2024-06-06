@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import utils.DriverHelper;
 
-public class TechtorialAddProductStepDef {
+public class TechtorialProductStepDef {
 
     WebDriver driver= DriverHelper.getDriver();
     TechtorialMainPage techtorialMainPage=new TechtorialMainPage(driver);
@@ -33,6 +33,23 @@ public class TechtorialAddProductStepDef {
     @Then("User validates product details {string},{string},{string} from table")
     public void user_validates_product_details_from_table(String productName, String productPrice, String checkBox) {
     techtorialProductPage.validateProductInformation(productName,productPrice,checkBox);
+    }
+
+    @When("User clicks Products button")
+    public void user_clicks_products_button() {
+      techtorialMainPage.clickProductButton();
+    }
+    @When("User selects {string} and {string} for categories")
+    public void user_selects_and_for_categories(String category, String subCategory) throws InterruptedException {
+    techtorialProductPage.chooseCategories(category,subCategory);
+    }
+    @When("User clicks three dots and view button for Product Page")
+    public void user_clicks_three_dots_and_view_button_for_product_page() {
+    techtorialProductPage.clickThreeDotsAndViewButton();
+    }
+    @Then("User validates {string} and {string} from action view")
+    public void user_validates_and_from_action_view(String category, String subCategory) {
+    techtorialProductPage.validateProductDetails(category,subCategory);
     }
 
 }
