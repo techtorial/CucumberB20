@@ -1,3 +1,4 @@
+@regression
 Feature: Testing Adding Product Functionality in Techtorial Website
 
   Background: Repetitive Step
@@ -10,6 +11,7 @@ Feature: Testing Adding Product Functionality in Techtorial Website
     And User clicks purchase check box and add 'It is a good product' into the description.
     Then User validates product details 'Truck-Mounted Crane','$16,500.00','Allowed' from table
 
+   @smoke
     Scenario: Happy Path Product Filter Functionality
       When User clicks Products button
       And User selects 'Lifting and Material Handling Equipment' and 'Mobile Cranes' for categories

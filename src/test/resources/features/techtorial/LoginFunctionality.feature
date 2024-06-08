@@ -1,3 +1,4 @@
+@smoke @regression
 #Feature is a general description of what you are testing
 Feature: Testing Login Functionality of Techtorial(Pizza)
   #Scenario is all about test cases(HappyPath,Negative..etc)
