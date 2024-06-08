@@ -6,6 +6,7 @@ import com.qa.weborder.pages.WebOrderPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import utils.ConfigReader;
 import utils.DriverHelper;
@@ -40,8 +41,8 @@ public class WebOrderStepDef {
     }
 
     @Then("User validates {string}")
-    public void user_validates(String string) {
-
+    public void user_validates(String expectedMessage) {
+        Assert.assertEquals(expectedMessage,webOrderPage.message());
     }
 
     @Then("User validates all the information {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")

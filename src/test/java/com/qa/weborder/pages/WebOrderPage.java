@@ -35,9 +35,14 @@ public class WebOrderPage {
     @FindBy(css = "#ctl00_MainContent_fmwOrder_InsertButton")
     WebElement processButton;
 
+    @FindBy(xpath = "//strong")
+    WebElement message;
+
     public void productInformation(String productName,String quantity) throws InterruptedException {
         BrowserUtils.selectBy(this.productName,productName,"text");
         Thread.sleep(1000);
+        this.quantity.clear();
+        Thread.sleep(2000);
         this.quantity.sendKeys(quantity);
     }
     public void addressInformation(String customerName,String street,String city,String state,String zipCode){
@@ -54,5 +59,9 @@ public class WebOrderPage {
         this.cardNumber.sendKeys(cardNumber);
         this.expireDate.sendKeys(expireDate);
         processButton.click();
+    }
+
+    public String message(){
+        return BrowserUtils.getText(message);
     }
 }
