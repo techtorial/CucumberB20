@@ -35,6 +35,10 @@ public class WebOrderPage {
     WebElement zipCode;
     @FindBy(css = "#ctl00_MainContent_fmwOrder_cardList_0")
     WebElement cardTypeVisa;
+    @FindBy(css = "#ctl00_MainContent_fmwOrder_cardList_1")
+    WebElement cardTypeMasterCard;
+    @FindBy(css = "#ctl00_MainContent_fmwOrder_cardList_2")
+    WebElement cardTypeAmericanExpress;
     @FindBy(css = "#ctl00_MainContent_fmwOrder_TextBox6")
     WebElement cardNumber;
     @FindBy(css = "#ctl00_MainContent_fmwOrder_TextBox1")
@@ -65,8 +69,19 @@ public class WebOrderPage {
     }
 
     public void paymentInformation(String cardType, String cardNumber, String expireDate) {
-        if (cardType.equals("Visa")) {
-            cardTypeVisa.click();
+        cardType = cardType.toLowerCase();
+        switch (cardType) {
+            case "visa":
+                cardTypeVisa.click();
+                break;
+            case "mastercard":
+                cardTypeMasterCard.click();
+                break;
+            case "american express":
+                cardTypeAmericanExpress.click();
+                break;
+            default:
+                cardTypeVisa.click();
         }
         this.cardNumber.sendKeys(cardNumber);
         this.expireDate.sendKeys(expireDate);
@@ -81,14 +96,14 @@ public class WebOrderPage {
                                          String cardType, String cardNumber, String expireDate) {
 
         //PLEASE DO NOT LOSE THIS CODE
-        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDateTime now=LocalDateTime.now();
-        String currentDate=dtf.format(now);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String currentDate = dtf.format(now);
 
-        List<String> expectedInformation = Arrays.asList(name, productName, quantity,currentDate,street, city, state, zipCode, cardType, cardNumber, expireDate);
+        List<String> expectedInformation = Arrays.asList(name, productName, quantity, currentDate, street, city, state, zipCode, cardType, cardNumber, expireDate);
 
         for (int i = 1; i < allInformation.size() - 1; i++) {
-            Assert.assertEquals(expectedInformation.get(i-1), BrowserUtils.getText(allInformation.get(i)));
+            Assert.assertEquals(expectedInformation.get(i - 1), BrowserUtils.getText(allInformation.get(i)));
         }
     }
 
