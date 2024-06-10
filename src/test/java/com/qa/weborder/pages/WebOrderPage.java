@@ -1,15 +1,22 @@
 package com.qa.weborder.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 public class WebOrderPage {
 
-    public WebOrderPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+    public WebOrderPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "#ctl00_MainContent_fmwOrder_ddlProduct")
@@ -38,22 +45,27 @@ public class WebOrderPage {
     @FindBy(xpath = "//strong")
     WebElement message;
 
-    public void productInformation(String productName,String quantity) throws InterruptedException {
-        BrowserUtils.selectBy(this.productName,productName,"text");
+    @FindBy(xpath = "//table[@id='ctl00_MainContent_orderGrid']//tr[2]//td")
+    List<WebElement> allInformation;
+
+    public void productInformation(String productName, String quantity) throws InterruptedException {
+        BrowserUtils.selectBy(this.productName, productName, "text");
         Thread.sleep(1000);
         this.quantity.clear();
         Thread.sleep(2000);
         this.quantity.sendKeys(quantity);
     }
-    public void addressInformation(String customerName,String street,String city,String state,String zipCode){
+
+    public void addressInformation(String customerName, String street, String city, String state, String zipCode) {
         this.customerName.sendKeys(customerName);
         this.street.sendKeys(street);
         this.city.sendKeys(city);
         this.state.sendKeys(state);
         this.zipCode.sendKeys(zipCode);
     }
-    public void paymentInformation(String cardType,String cardNumber,String expireDate){
-        if(cardType.equals("Visa")){
+
+    public void paymentInformation(String cardType, String cardNumber, String expireDate) {
+        if (cardType.equals("Visa")) {
             cardTypeVisa.click();
         }
         this.cardNumber.sendKeys(cardNumber);
@@ -61,7 +73,24 @@ public class WebOrderPage {
         processButton.click();
     }
 
-    public String message(){
+    public String message() {
         return BrowserUtils.getText(message);
     }
+
+    public void validateOrderInformation(String name, String productName, String quantity, String street, String city, String state, String zipCode,
+                                         String cardType, String cardNumber, String expireDate) {
+
+        //PLEASE DO NOT LOSE THIS CODE
+        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDateTime now=LocalDateTime.now();
+        String currentTime=dtf.format(now);
+
+        List<String> expectedInformation = Arrays.asList(name, productName, quantity,currentTime,street, city, state, zipCode, cardType, cardNumber, expireDate);
+
+        for (int i = 1; i < allInformation.size() - 1; i++) {
+            Assert.assertEquals(expectedInformation.get(i-1), BrowserUtils.getText(allInformation.get(i)));
+        }
+    }
+
+
 }

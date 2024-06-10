@@ -46,7 +46,9 @@ public class WebOrderStepDef {
     }
 
     @Then("User validates all the information {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
-    public void user_validates_all_the_information(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
-
+    public void user_validates_all_the_information(String name, String productName, String quantity, String street, String city, String state, String zipCode,
+                                                   String cardType, String cardNumber, String expireDate) {
+        webOrderMainPage.clickViewOrderButton();
+        webOrderPage.validateOrderInformation(name,productName,quantity,street,city,state,zipCode,cardType,cardNumber,expireDate);
     }
 }
