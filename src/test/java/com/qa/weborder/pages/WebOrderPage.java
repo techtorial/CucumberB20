@@ -83,9 +83,9 @@ public class WebOrderPage {
         //PLEASE DO NOT LOSE THIS CODE
         DateTimeFormatter dtf=DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDateTime now=LocalDateTime.now();
-        String currentTime=dtf.format(now);
+        String currentDate=dtf.format(now);
 
-        List<String> expectedInformation = Arrays.asList(name, productName, quantity,currentTime,street, city, state, zipCode, cardType, cardNumber, expireDate);
+        List<String> expectedInformation = Arrays.asList(name, productName, quantity,currentDate,street, city, state, zipCode, cardType, cardNumber, expireDate);
 
         for (int i = 1; i < allInformation.size() - 1; i++) {
             Assert.assertEquals(expectedInformation.get(i-1), BrowserUtils.getText(allInformation.get(i)));
