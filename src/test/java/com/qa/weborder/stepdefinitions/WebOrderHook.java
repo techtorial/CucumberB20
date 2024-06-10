@@ -21,6 +21,6 @@ public class WebOrderHook {
     @After
     public void tearDown(Scenario scenario){
         BrowserUtils.getScreenShotCucumber(driver,scenario);
-//        driver.quit();
+        driver.quit();
     }
 }

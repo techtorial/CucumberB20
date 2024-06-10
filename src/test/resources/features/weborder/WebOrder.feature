@@ -17,5 +17,7 @@ Feature: Testing Product Order Functionality
     Then User validates '<message>'
     And User validates all the information '<name>','<productName>','<quantity>','<street>','<city>','<state>','<zipCode>','<cardType>','<cardNumber>','<expireDate>'
     Examples:
-      | productName | quantity | name  | street     | city        | state | zipCode | cardType | cardNumber  | expireDate | message                                |
-      | MyMoney     | 4        | Ahmet | 2400 devos | Des Plaines | IL    | 60153   | Visa     | 21312312321 | 11/25      | New order has been successfully added. |
+      | productName | quantity | name             | street     | city        | state | zipCode | cardType         | cardNumber  | expireDate | message                                |
+      | MyMoney     | 4        | Ahmet            | 2400 devos | Des Plaines | IL    | 60153   | Visa             | 21312312321 | 11/25      | New order has been successfully added. |
+      | FamilyAlbum | 5        | AhmetAbdulCambar | 2400 devos | Des Plaines | IL    | 60153   | MasterCard       | 21312312322 | 11/26      | New order has been successfully added. |
+      | ScreenSaver | 6        | Ay               | 2400 devos | Des Plaines | IL    | 60153   | American Express | 21312312323 | 11/27      | New order has been successfully added. |
