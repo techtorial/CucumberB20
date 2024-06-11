@@ -21,3 +21,21 @@ Feature: Testing Product Order Functionality
       | MyMoney     | 4        | Ahmet            | 2400 devos | Des Plaines | IL    | 60153   | Visa             | 21312312321 | 11/25      | New order has been successfully added. |
       | FamilyAlbum | 5        | AhmetAbdulCambar | 2400 devos | Des Plaines | IL    | 60153   | MasterCard       | 21312312322 | 11/26      | New order has been successfully added. |
       | ScreenSaver | 6        | Ay               | 2400 devos | Des Plaines | IL    | 60153   | American Express | 21312312323 | 11/27      | New order has been successfully added. |
+
+
+  Scenario: Happy path Order functionality DataTable
+    Given User provides username,password and click order button
+    When User enters the product information
+      | productName | MyMoney |
+      | quantity    | 4       |
+    And User enters the address information
+      | name    | Ahmet       |
+      | street  | 2400 devos' |
+      | city    | Des Plaines |
+      | state   | IL          |
+      | zipCode | 60153       |
+    And User enters the payment information and click process button
+      | cardType   | Visa        |
+      | cardNumber | 21312312321 |
+      | expireDate | 11/25       |
+    Then User validates 'New order has been successfully added.'

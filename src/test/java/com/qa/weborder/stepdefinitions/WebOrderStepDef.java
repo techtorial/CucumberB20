@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import utils.ConfigReader;
 import utils.DriverHelper;
 
+import java.util.Map;
+
 public class WebOrderStepDef {
 
     WebDriver driver = DriverHelper.getDriver();
@@ -28,6 +30,7 @@ public class WebOrderStepDef {
     @When("User enters the product information {string} and {string}")
     public void user_enters_the_product_information_and(String productName, String quantity) throws InterruptedException {
         webOrderPage.productInformation(productName, quantity);
+
     }
 
     @When("User enters the address information {string},{string},{string},{string},{string}")
@@ -50,5 +53,20 @@ public class WebOrderStepDef {
                                                    String cardType, String cardNumber, String expireDate) {
         webOrderMainPage.clickViewOrderButton();
         webOrderPage.validateOrderInformation(name,productName,quantity,street,city,state,zipCode,cardType,cardNumber,expireDate);
+    }
+
+    @When("User enters the product information")
+    public void user_enters_the_product_information(io.cucumber.datatable.DataTable dataTable) throws InterruptedException {
+        Map<String,String> productInformation=dataTable.asMap();
+        System.out.println(productInformation);
+        webOrderPage.productInformation(productInformation.get("productName"),productInformation.get("quantity"));
+    }
+    @When("User enters the address information")
+    public void user_enters_the_address_information(io.cucumber.datatable.DataTable dataTable) {
+
+    }
+    @When("User enters the payment information and click process button")
+    public void user_enters_the_payment_information_and_click_process_button(io.cucumber.datatable.DataTable dataTable) {
+
     }
 }
