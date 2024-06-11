@@ -1,3 +1,4 @@
+@regressionWebOrder
 Feature: Testing Product Order Functionality
 
   Scenario: Happy path Order functionality Normal
@@ -7,7 +8,6 @@ Feature: Testing Product Order Functionality
     And User enters the payment information 'Visa','21312312321','11/25' and click process button
     Then User validates 'New order has been successfully added.'
     And User validates all the information 'Ahmet','MyMoney','4','2400 devos','Des Plaines','IL','60153','Visa','21312312321','11/25'
-
 
   Scenario Outline: Happy path Order functionality Scenario Outline
     Given User provides username,password and click order button
