@@ -58,15 +58,19 @@ public class WebOrderStepDef {
     @When("User enters the product information")
     public void user_enters_the_product_information(io.cucumber.datatable.DataTable dataTable) throws InterruptedException {
         Map<String,String> productInformation=dataTable.asMap();
-        System.out.println(productInformation);
+        System.out.println(productInformation);//proof
         webOrderPage.productInformation(productInformation.get("productName"),productInformation.get("quantity"));
     }
     @When("User enters the address information")
     public void user_enters_the_address_information(io.cucumber.datatable.DataTable dataTable) {
-
+    Map<String,String> allAddressInformation=dataTable.asMap();
+    webOrderPage.addressInformation(allAddressInformation.get("name"),allAddressInformation.get("street"),
+            allAddressInformation.get("city"),allAddressInformation.get("state"),allAddressInformation.get("zipCode"));
     }
     @When("User enters the payment information and click process button")
     public void user_enters_the_payment_information_and_click_process_button(io.cucumber.datatable.DataTable dataTable) {
-
+        Map<String,String> allPaymentInformation=dataTable.asMap();
+        webOrderPage.paymentInformation(allPaymentInformation.get("cardType"),allPaymentInformation.get("cardNumber"),
+                allPaymentInformation.get("expireDate"));
     }
 }
