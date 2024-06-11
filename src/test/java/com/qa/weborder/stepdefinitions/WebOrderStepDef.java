@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import utils.ConfigReader;
 import utils.DriverHelper;
 
+import java.util.List;
 import java.util.Map;
 
 public class WebOrderStepDef {
@@ -72,5 +73,10 @@ public class WebOrderStepDef {
         Map<String,String> allPaymentInformation=dataTable.asMap();
         webOrderPage.paymentInformation(allPaymentInformation.get("cardType"),allPaymentInformation.get("cardNumber"),
                 allPaymentInformation.get("expireDate"));
+    }
+    @Then("User validates message")
+    public void user_validates_message(io.cucumber.datatable.DataTable dataTable) {
+        List<String> expectedMessage=dataTable.asList();
+        Assert.assertEquals(expectedMessage.getFirst(),webOrderPage.message());
     }
 }

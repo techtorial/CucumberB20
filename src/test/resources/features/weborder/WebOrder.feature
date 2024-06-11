@@ -38,4 +38,5 @@ Feature: Testing Product Order Functionality
       | cardType   | Visa        |
       | cardNumber | 21312312321 |
       | expireDate | 11/25       |
-    Then User validates 'New order has been successfully added.'
+    Then User validates message
+      | New order has been successfully added. |
