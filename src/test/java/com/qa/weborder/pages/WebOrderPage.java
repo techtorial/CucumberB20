@@ -98,7 +98,7 @@ public class WebOrderPage {
         //PLEASE DO NOT LOSE THIS CODE
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDateTime now = LocalDateTime.now();
-        String currentDate = dtf.format(now.plusDays(1));
+        String currentDate = dtf.format(now);
 
         List<String> expectedInformation = Arrays.asList(name, productName, quantity, currentDate, street, city, state, zipCode, cardType, cardNumber, expireDate);
 

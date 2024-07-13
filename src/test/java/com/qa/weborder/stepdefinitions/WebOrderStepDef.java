@@ -77,6 +77,6 @@ public class WebOrderStepDef {
     @Then("User validates message")
     public void user_validates_message(io.cucumber.datatable.DataTable dataTable) {
         List<String> expectedMessage=dataTable.asList();
-        Assert.assertEquals(expectedMessage.getFirst(),webOrderPage.message());
+        Assert.assertEquals(expectedMessage.get(0),webOrderPage.message());
     }
 }
