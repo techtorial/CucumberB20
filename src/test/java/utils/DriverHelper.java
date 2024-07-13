@@ -39,6 +39,7 @@ public class DriverHelper {
                     options.addArguments("--window-size=1920,1080");
 
                     driver = new ChromeDriver(options);
+                    System.out.println("THE DRIVER SETUP IS COMPLETED");
                     break;
                 case "firefox":
                     driver = new FirefoxDriver();
